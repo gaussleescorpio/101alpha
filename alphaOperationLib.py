@@ -54,7 +54,7 @@ def rank(df):
     cross sectional rank
     return a df with rank along columns
     '''
-    return df.rank(axis=1,pct=True)
+    return df.rank(axis=0,pct=True)
 
 def scale(df,k=1):
     '''

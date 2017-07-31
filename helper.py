@@ -421,9 +421,10 @@ def getBar(data,n,byTick=True):
         open =pd.Series(BarData.price.first(),name="Open")
         high =pd.Series(BarData.price.max(),name="High")
         low =pd.Series(BarData.price.min(),name="Low")
-        close =pd.Series(BarData.price.last(),name ="Close")
+        close =pd.Series(BarData.price.last(), name ="Close")
         volume = pd.Series(BarData.volume.sum(), name="Volume")
-        df =pd.concat([open,high,low,close, volume],axis=1)
+        turnover = pd.Series(BarData.turnover.sum(), name="turnover")
+        df =pd.concat([open,high,low,close, volume, turnover],axis=1)
         return df
     else:
         BarData = data.groupby((data.utcQuoteTime/n).astype(int)*n)
@@ -432,7 +433,8 @@ def getBar(data,n,byTick=True):
         low =pd.Series(BarData.price.min(),name="Low")
         close =pd.Series(BarData.price.last(),name ="Close")
         volume = pd.Series(BarData.volume.sum(), name="Volume")
-        df =pd.concat([open,high,low,close],axis=1)
+        turnover = pd.Series(BarData.turnover.sum(), name="turnover")
+        df =pd.concat([open,high,low,close, volume, turnover],axis=1)
         return df
 def getLastTradingDay(date):
     date_object = datetime.datetime.strptime(str(date),'%Y%m%d')

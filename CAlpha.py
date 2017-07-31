@@ -17,7 +17,7 @@ class Alphas(object):
 
         self.volume = pn_data.minor_xs('Volume')
         
-        self.vwap=pn_data.minor_xs('Vwap')
+        self.vwap=pn_data.minor_xs('vwap')
         
         self.returns = self.close.pct_change()
 
